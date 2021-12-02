@@ -1,0 +1,24 @@
+body {
+    background-color: #252525;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.error {
+    text-align: center;
+    margin-top: 15%;
+}
+
+.error h2 {
+    font-size: 70px;
+    text-shadow: 4px 4px #7bda72;
+}
+
+.error a {
+    color: #72da7b;
+    text-decoration: none;
+}
+
+.error a:hover {
+    text-decoration: underline;
+}

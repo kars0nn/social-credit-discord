@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./static/styles/stylea.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>leaderboard</title>
+</head>
+<body style="background: #111820;">
+    <br>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">/\</button>
+    <div class="container">
+        <div class="container" style="text-align: center; border-radius: 20px; color: blueviolet;">
+            <h1>顶级公民!</h1>
+            <h3>top 30 citizen!</h3>
+            <br>
+            <i style="font-size: small;">
+                从最伟大到最差
+            </i>
+            <i>
+                (from best to worst)
+            </i>
+            <br>
+            <br>
+            <a href="/all">look at all citizen</a>
+            <br>
+            <div class="container-fluid" id="content" style="text-align: center;">
+                <% if(users.length === 0) { %>
+                    <br>
+                    <br>
+                    <h3><i>没有性感的公民</i></h3>
+                <% } else { %>
+                <% for (let i = 0; i < users.length; i++) { %>
+                    <br>
+                    <a href="/resolve/<%= users[i].id %>" style="text-decoration: none;">
+                    <div class="container" id="reason" style="padding: 20px;">
+                        <img src="<%= users[i].url %>" style="border-radius: 100px; width: 50px; height: 50px; margin-bottom: 8px;">
+                        <a style="font-size: large; padding-left: 8px;"><%=users[i].username%></a>
+                        <br>
+                        <hr>
+                        <a>排名 #<%=i + 1%></a>
+                        <h1 style="padding-top: 10px;">
+                            <%=users[i].socialCredit%>
+                        </h1>
+                    </div>
+                    </a>
+                <% } %>
+                <% } %>
+                <br>
+            </div>
+            <br>
+            <br>
+            <a href="/appeal" id="login">
+                <button id="button">返回</button>
+            </a>
+            <br>
+            <br>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
+</script>
+<script>
+    //Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+</script>
+</html>

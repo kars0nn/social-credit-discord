@@ -1,0 +1,12 @@
+body {
+    background-color: #252525;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    width: 100%;
+}
+
+.welcome {
+    text-align: center;
+    margin-top: 15%;
+}

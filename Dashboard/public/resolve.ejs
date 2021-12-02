@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/styles/stylea.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>resolve</title>
+</head>
+
+<body style="background: #111820;">
+    <br>
+    <div class="container">
+        <div class="container" style="text-align: center; border-radius: 20px; color: blueviolet;">
+            <h1>呼吁你的罢工!</h1>
+            <h3>appeal your strike!</h3>
+            <a>罢工凹痕:</a>
+            <i>
+                <%= data.strikes[0].id %>
+            </i>
+            <br>
+            <br>
+            <hr>
+            <br>
+            <div class="container-fluid" id="flex-container">
+                <br>
+                <div class="container">
+                            <form  action="/send" method="post">
+                                <label>Reason</label>
+                                <input class="inputbox" name="reason" type="text" style="width: 50vw;" id="1" value="<%= data.strikes[0].reason %>" placeholder="<%= data.reason %>" readonly>
+                                <br>
+                                <br>
+                                <label>Message</label>
+                                <input class="inputbox"  name="message" type="text" style="width: 50vw;" id="2" value="<%= data.strikes[0].message %>" placeholder="<%= data.message %>" readonly>
+                                <br>
+                                <br>
+                                <label>Amount</label>
+                                <input class="inputbox" name="amount" type="number" style="width: 50vw;" id="3" value="<%= data.strikes[0].amount %>" placeholder="<%= data.amount %>" readonly>
+                                <br>
+                                <br>
+                                <label>Strike ID</label>
+                                <input class="inputbox" name="id" type="text" style="width: 50vw;" id="4" value="<%= data.strikes[0].id %>" readonly>
+                                <br>
+                                <br>
+                                <textarea class="inputbox" name="appeal" id="5" style="width: 70vw;" maxlength="500" placeholder="Appeal" required></textarea>
+                                <br>
+                                <br>
+                                <button id="button" type="submit" style="font-size: large;">Submit</button>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <label>Your User ID:</label>
+                                <br>
+                                <br>
+                                <input class="inputbox" type="text" name="user" id="user" readonly value="<%=user.userID%>">
+                            </form>
+                </div>
+                <br>
+            </div>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</body>
+</html>

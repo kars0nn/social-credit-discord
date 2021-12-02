@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./static/styles/stylea.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>admin page</title>
+</head>
+<body style="background: #111820;">
+    <br>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">/\</button>
+    <div class="container">
+        <div class="container" style="text-align: center; border-radius: 20px; color: blueviolet;">
+            <h1>管理员控制台</h1>
+            <h3>admin console</h3>
+            <br>
+            <br>
+            <div class="container">
+                <% if(appeals.length === 0) { %>
+                    <div class="container" style="text-align: center;">
+                        <h2>All caught up!</h2>
+                    </div>
+                <% } else { %>
+                    <% for (let i = 0; i < appeals.length; i++) { %>
+                            <br>
+                            <div class="container" id="reason">
+                                <img src="<%=appeals[i].url%>" style="border-radius: 100px; width: 51px; height: 50px; float: left;">
+                                <a style="float: left; padding-left: 10px; margin-top: 15px;"><%= appeals[i].username %> - (<%=appeals[i].socialCredit%>)</a>
+                                <br>
+                                <br>
+                                <hr>
+                                <div class="container">
+                                    <p style="font-size: large; float: left;"><%= appeals[i].appeal %></p>
+                                </div>
+                                <br>
+                                <br>
+                                <form action="/res" method="post">
+                                    <input name="id" type="text" class="inputbox" readonly value="<%= appeals[i].id %>">
+                                    <button id="button" style="font-size: medium;" type="submit">Approve</button>
+                                </form>
+                            </div>
+                    <% } %>
+                <% } %>
+            </div>
+            <br>
+            <br>
+            <a href="/users">
+                <button id="button">Manage Users</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

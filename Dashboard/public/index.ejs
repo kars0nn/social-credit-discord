@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./static/styles/stylea.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>social credit</title>
+</head>
+<body style="background: #111820;">
+    <br>
+    <div class="container">
+        <div class="container" style="text-align: center; border-radius: 20px; color: blueviolet;">
+            <br>
+            <br>
+            <div class="container-fluid" style="padding: 10px;">
+                <h1>登录您的不和谐帐户!</h1>
+                <h3>access with discord!</h3>
+                <br>
+                <a href="<%= url %>" id="login">
+                    <button id="button">登录</button>
+                </a>
+                <br>
+                <hr>
+                <i style="font-size: xx-large;">or</i>
+                <br>
+                <hr>
+                <br>
+                <h1>The Ranking Of Citizens!</h1>
+                <br>
+                <a href="/users" id="login">
+                    <button id="button">公民排名</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
+</script>
+<script>
+    function generateRandomString() {
+        let randomString = '';
+        const randomNumber = Math.floor(Math.random() * 10);
+
+        for (let i = 0; i < 20 + randomNumber; i++) {
+            randomString += String.fromCharCode(33 + Math.floor(Math.random() * 94));
+        }
+
+        return randomString;
+    }
+
+    window.onload = () => {
+        const fragment = new URLSearchParams(window.location.hash.slice(1));
+        const [accessToken, tokenType, state] = [fragment.get('access_token'), fragment.get('token_type'), fragment.get('state')];
+
+        if (!accessToken) {
+            const randomString = generateRandomString();
+            localStorage.setItem('oauth-state', randomString);
+
+            document.getElementById('login').href += `&state=${encodeURIComponent(btoa(randomString))}`;
+            return document.getElementById('login').style.display = 'block';
+        }
+
+        if (localStorage.getItem('oauth-state') !== atob(decodeURIComponent(state))) {
+            return console.log('You may have been click-jacked!');
+        }
+
+        fetch('https://discord.com/api/users/@me', {
+            headers: {
+                authorization: `${tokenType} ${accessToken}`,
+            },
+        })
+            .then(result => result.json())
+            .then(response => {
+                const { username, discriminator } = response;
+                document.getElementById('info').innerText += ` ${username}#${discriminator}`;
+            })
+            .catch(console.error);
+    }
+</script>
+</html>

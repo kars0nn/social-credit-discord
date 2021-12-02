@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./static/styles/stylea.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>home page</title>
+</head>
+<body style="background: #111820;">
+    <br>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">/\</button>
+    <div class="container">
+        <div class="container" style="text-align: center; border-radius: 20px; color: blueviolet;">
+            <h1>现在上诉！</h1>
+            <h3>social credit redeemer!</h3>
+            <i><%= user.username %></i>
+            <br>
+            <br>
+            <h3>所有罢工 :</h3>
+            <div class="container-fluid" id="content">
+                <% if(user.strikes.length === 0) { %>
+                    <br>
+                    <br>
+                    <h3><i>还没有罢工！</i></h3>
+                <% } else { %>
+                <% for (let i = 0; i < user.strikes.length; i++) { %>
+                    <br>
+                    <a href="/resolve/<%= user.strikes[i].id %>" style="text-decoration: none;">
+                        <div class="container" id="reason">
+                            <p style="font-size: large;"><b style="font-size: medium; color: deeppink;">Reason:</b> <%= user.strikes[i].reason %></p>
+                            <p style="font-size: large;"><b style="font-size: medium; color: deeppink">Message:</b> <%= user.strikes[i].message %></p>
+                            <span style="font-size: large;"><b style="font-size: medium; color: deeppink">Key Word:</b> <u><%= user.strikes[i].keyWord %></u></span>
+                        <span style="float: right;"><i><%=user.strikes[i].createdAt.toLocaleDateString() %></i></span>
+                    </div>
+                    </a>
+                <% } %>
+                <% } %>
+                <br>
+            </div>
+            <br>
+            <% if(user.isVIP === true) { %>
+                <a href="/admin">   
+                    <button id="button">view appeals</button>
+                </a>
+            <%}%>
+            <a href="/users" id="login">
+                <button id="button">公民排名</button>
+            </a>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
+</script>
+<script>
+    //Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+</script>
+</html>
