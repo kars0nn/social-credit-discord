@@ -10,4 +10,4 @@ To use domains, just use nginx.
 Also if you find anything that might be personal to me in here, don't worry about it it's most likely irrelevant now lol
 
 
-also make sure to run npm i discord.js@12.5.3 or else it won't work
+also make sure to run npm i discord.js@12.5.3 or whatever the last version of v12 was or else it won't work
